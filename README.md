@@ -1,6 +1,506 @@
 # Portfolio
 Collection de mes projets académiques et professionnels, illustrant mes compétences en économie, finance et data
+# 📊 Backtesting Stratégie de Trading - Action Capgemini
 
+Analyse et backtesting d'une stratégie de trading algorithmique sur l'action Capgemini (CAP.PA) avec système de signaux Achat/Vente.
+
+[![Excel](https://img.shields.io/badge/Excel-Analysis-green.svg)]()
+[![Trading](https://img.shields.io/badge/Trading-Backtesting-blue.svg)]()
+[![Période](https://img.shields.io/badge/P%C3%A9riode-2020--2024-orange.svg)]()
+
+---
+
+## 📋 Table des matières
+
+- [Vue d'ensemble](#-vue-densemble)
+- [Résultats de performance](#-résultats-de-performance)
+- [Structure des données](#-structure-des-données)
+- [Méthodologie](#-méthodologie)
+- [Signaux de trading](#-signaux-de-trading)
+- [Métriques calculées](#-métriques-calculées)
+- [Analyse des transactions](#-analyse-des-transactions)
+- [Utilisation](#-utilisation)
+
+---
+
+## 🎯 Vue d'ensemble
+
+Ce fichier Excel contient le **backtesting complet** d'une stratégie de trading quantitative appliquée à l'action **Capgemini** cotée sur Euronext Paris.
+
+### Caractéristiques du backtest
+
+- **Actif** : Capgemini (CAP.PA)
+- **Période** : 31 décembre 2019 - 31 décembre 2024 (5 ans)
+- **Fréquence** : Données quotidiennes
+- **Observations** : 1,286 jours de trading
+- **Type de stratégie** : Algorithmique avec signaux Achat/Vente
+
+### Résumé des performances
+
+| Métrique | Valeur |
+|----------|--------|
+| **Gain cumulé brut** | -33.51 € |
+| **Frais de transaction cumulés** | -185.97 € |
+| **Gain net cumulé** | **-219.48 €** ⚠️ |
+| **Nombre de signaux d'achat** | 53 |
+| **Nombre de signaux de vente** | 55 |
+| **Taux de transaction** | 8.4% (108 signaux / 1,286 jours) |
+
+---
+
+## 📈 Résultats de performance
+
+### Performance globale
+
+```
+📉 RÉSULTAT NET : -219.48 €
+```
+
+**Décomposition** :
+- 💰 Gains/Pertes sur transactions : -33.51 €
+- 💸 Frais de transaction : -185.97 €
+- 📊 Performance nette : **-219.48 €** (perte)
+
+### Évolution du cours Capgemini
+
+| Période | Cours |
+|---------|-------|
+| **Début (31/12/2019)** | 100.73 € |
+| **Plus haut** | 223.13 € |
+| **Plus bas** | 53.11 € (Mars 2020 - COVID) |
+| **Fin (31/12/2024)** | 156.05 € |
+
+**Performance Buy & Hold** : +54.9% sur 5 ans  
+**Performance Stratégie** : -219.48 € (perte absolue)
+
+### Statistiques du cours
+
+```
+Cours moyen         : 156.78 €
+Écart-type          : 36.12 €
+Volatilité          : 23% annualisée (approx.)
+```
+
+---
+
+## 📊 Structure des données
+
+Le fichier contient **11 colonnes** avec 1,286 lignes de données quotidiennes :
+
+### Colonnes du fichier
+
+| # | Colonne | Description | Type | Non-null |
+|---|---------|-------------|------|----------|
+| 1 | **Date** | Date de trading (JJ/MM/AAAA) | Date | 1,285 |
+| 2 | **Cours** | Prix de clôture Capgemini | Numérique | 1,284 |
+| 3 | **valeur achat** | Prix moyen d'achat du portefeuille | Numérique | 1,285 |
+| 4 | **valeur courante** | Valeur actuelle du portefeuille | Numérique | 1,284 |
+| 5 | **nb titres** | Nombre d'actions détenues | Numérique | 1,285 |
+| 6 | **montant transac** | Montant de la transaction du jour | Numérique | 1,284 |
+| 7 | **gain** | Gain/Perte de la transaction | Numérique | 1,285 |
+| 8 | **gain cumul** | Gain/Perte cumulé (brut) | Numérique | 1,286 |
+| 9 | **frais transaction cumulés** | Frais de courtage cumulés | Numérique | 1,285 |
+| 10 | **gain net cum** | Gain net cumulé (après frais) | Numérique | 1,285 |
+| 11 | **Signal A/V** | Signal de trading (-1, 0, 1) | Entier | 1,286 |
+
+### Ligne 0 : Résumé de la stratégie
+
+La première ligne (ligne 0) contient le **résumé final** de la stratégie :
+
+```
+gain cumul                   : -33.51 €
+frais transaction cumulés    : -185.97 €
+gain net cum                 : -219.48 €
+Signal A/V                   : 107 (nombre total de signaux)
+```
+
+---
+
+## 🔍 Méthodologie
+
+### Système de signaux
+
+La stratégie utilise un système de signaux tripartite :
+
+| Signal | Code | Signification | Fréquence |
+|--------|------|---------------|-----------|
+| 🟢 **ACHAT** | `1` | Signal d'achat (long) | 53 fois (4.1%) |
+| 🔴 **VENTE** | `-1` | Signal de vente (close position) | 55 fois (4.3%) |
+| ⚪ **NEUTRE** | `0` | Pas de transaction (hold) | 1,177 fois (91.6%) |
+
+### Logique de trading
+
+```
+SI Signal = 1 (ACHAT)
+   → Acheter des actions au cours du jour
+   → Déduire les frais de transaction
+   → Mettre à jour le portefeuille
+
+SI Signal = -1 (VENTE)
+   → Vendre toutes les positions
+   → Déduire les frais de transaction
+   → Calculer le gain/perte
+
+SI Signal = 0 (NEUTRE)
+   → Conserver les positions actuelles
+   → Pas de transaction
+```
+
+### Calcul des frais de transaction
+
+Les frais de transaction sont déduits à chaque opération (achat ou vente) :
+
+```
+Frais cumulés totaux : -185.97 €
+Nombre de transactions : 108 (53 achats + 55 ventes)
+Frais moyen par transaction : ~1.72 €
+```
+
+**Hypothèse de frais** : Environ 0.1% - 0.5% par transaction (courtage + taxe)
+
+---
+
+## 📉 Signaux de trading
+
+### Distribution des signaux
+
+```
+Nombre total d'observations : 1,286
+┌─────────────────────────────┐
+│ Signal  │ Count │    %     │
+├─────────┼───────┼──────────┤
+│   -1    │   55  │   4.3%   │  🔴 VENTE
+│    0    │ 1,177 │  91.6%   │  ⚪ NEUTRE
+│    1    │   53  │   4.1%   │  🟢 ACHAT
+│   107   │    1  │   0.08%  │  📊 RÉSUMÉ
+└─────────────────────────────┘
+```
+
+### Exemples de signaux générés
+
+**Premières transactions** (2020) :
+
+| Date | Cours | Signal | Action |
+|------|-------|--------|--------|
+| 27/01/2020 | 109.11 € | -1 | 🔴 VENTE |
+| 19/02/2020 | 110.35 € | 1 | 🟢 ACHAT |
+| 27/02/2020 | 94.77 € | -1 | 🔴 VENTE |
+| 28/02/2020 | 91.78 € | -1 | 🔴 VENTE |
+| 06/03/2020 | 84.25 € | -1 | 🔴 VENTE |
+
+**Crash COVID-19 (Mars 2020)** : Plusieurs signaux de vente détectés lors de la forte baisse.
+
+---
+
+## 💰 Métriques calculées
+
+### 1. Valeur d'achat (`valeur achat`)
+Prix moyen pondéré d'achat des actions en portefeuille.
+
+**Formule** :
+```
+valeur_achat = Σ(prix_achat_i × quantité_i) / Σ(quantité_i)
+```
+
+**Statistiques** :
+- Moyenne : 169.14 €
+- Médiane : 154.40 €
+- Max : 545.03 €
+
+### 2. Valeur courante (`valeur courante`)
+Valeur actuelle du portefeuille au cours du jour.
+
+**Formule** :
+```
+valeur_courante = nb_titres × cours_actuel
+```
+
+### 3. Gain/Perte (`gain`)
+Gain ou perte réalisé sur une transaction.
+
+**Formule** :
+```
+gain = (cours_vente - prix_achat) × nb_titres
+```
+
+### 4. Gain cumulé (`gain cumul`)
+Cumul des gains/pertes de toutes les transactions (avant frais).
+
+**Résultat final** : **-33.51 €**
+
+### 5. Frais de transaction cumulés (`frais transaction cumulés`)
+Somme de tous les frais de courtage payés.
+
+**Résultat final** : **-185.97 €**
+
+### 6. Gain net cumulé (`gain net cum`)
+Performance nette de la stratégie (après frais).
+
+**Formule** :
+```
+gain_net_cum = gain_cumul + frais_transaction_cumulés
+```
+
+**Résultat final** : **-219.48 €**
+
+---
+
+## 📊 Analyse des transactions
+
+### Performance par phase de marché
+
+#### Phase 1 : Pré-COVID (01/2020 - 02/2020)
+- Cours stable : 100-110 €
+- Signaux : Mixtes
+- Résultat : Légèrement positif (+6.37 €)
+
+#### Phase 2 : Crash COVID (03/2020)
+- Chute brutale : -47% (110 € → 53 €)
+- Signaux : Majoritairement VENTE (protection)
+- Résultat : Pertes importantes
+
+#### Phase 3 : Reprise (2020-2021)
+- Rebond fort : +120% (53 € → 180 €)
+- Signaux : Alternance ACHAT/VENTE
+- Résultat : Performance mitigée
+
+#### Phase 4 : Consolidation (2022-2024)
+- Range : 130-180 €
+- Signaux : Peu fréquents
+- Résultat : Stabilisation des pertes
+
+### Points clés de la stratégie
+
+**✅ Points forts** :
+- Protection lors du crash COVID (signaux de vente)
+- Faible taux de transaction (8.4% = faibles frais relatifs)
+- Système discipliné et automatisé
+
+**❌ Points faibles** :
+- Performance nette négative (-219.48 €)
+- Sous-performance vs Buy & Hold (+54.9%)
+- Frais de transaction élevés (185.97 €)
+- Entrées/sorties mal timées (markets timing)
+
+---
+
+## 🛠️ Utilisation
+
+### Prérequis
+
+- Microsoft Excel 2016+ ou LibreOffice Calc
+- Connaissance de base en trading et analyse technique
+
+### Ouvrir le fichier
+
+```bash
+# Avec Excel
+open Analyse_capgemini.xlsx
+
+# Avec LibreOffice
+libreoffice Analyse_capgemini.xlsx
+```
+
+### Navigation dans le fichier
+
+1. **Ligne 0** : Résumé de la performance
+2. **Ligne 1** : En-têtes des colonnes
+3. **Lignes 2-1286** : Données quotidiennes chronologiques
+
+### Colonnes clés à analyser
+
+```
+Date          → Chronologie
+Cours         → Prix du marché
+Signal A/V    → Décisions de trading
+gain net cum  → Performance de la stratégie
+```
+
+### Filtrer les signaux
+
+Pour voir uniquement les transactions :
+
+```
+1. Sélectionner la colonne "Signal A/V"
+2. Filtrer : afficher uniquement -1 et 1
+3. Masquer les 0 (jours sans transaction)
+```
+
+Résultat : 108 lignes (53 achats + 55 ventes)
+
+---
+
+## 📈 Analyse graphique recommandée
+
+### Graphiques à créer dans Excel
+
+#### 1. Évolution du cours + Signaux
+```
+X : Date
+Y1 : Cours (ligne)
+Y2 : Signal A/V (markers)
+```
+→ Visualiser les points d'entrée/sortie sur le graphique des prix
+
+#### 2. Performance cumulée
+```
+X : Date
+Y : gain net cum (ligne)
+```
+→ Observer l'évolution de la performance dans le temps
+
+#### 3. Distribution des gains
+```
+Histogramme : gain (par transaction)
+```
+→ Analyser la répartition gains/pertes
+
+#### 4. Frais de transaction
+```
+X : Date
+Y : frais transaction cumulés (ligne)
+```
+→ Mesurer l'impact des frais sur la performance
+
+---
+
+## 🔍 Indicateurs de performance à calculer
+
+### Ratios classiques (à ajouter)
+
+#### 1. **Taux de réussite**
+```
+Taux_réussite = Nombre_trades_gagnants / Nombre_trades_total
+```
+
+#### 2. **Ratio Gains/Pertes**
+```
+Ratio_G/P = Gain_moyen_par_trade_gagnant / Perte_moyenne_par_trade_perdant
+```
+
+#### 3. **Drawdown maximum**
+```
+Max_Drawdown = (Pic - Creux) / Pic × 100
+```
+
+#### 4. **Sharpe Ratio**
+```
+Sharpe = (Rendement - Taux_sans_risque) / Volatilité
+```
+
+---
+
+## ⚠️ Limites et considérations
+
+### Limites du backtest
+
+1. **Biais de survivance** : Capgemini existe toujours (société non faillite)
+2. **Coûts de transaction** : Frais fixes hypothétiques
+3. **Slippage** : Pas de prise en compte du slippage d'exécution
+4. **Liquidité** : Hypothèse d'exécution immédiate au cours affiché
+5. **Frais de financement** : Pas de coûts de portage (si position short)
+6. **Dividendes** : Non pris en compte dans le calcul
+
+### Améliorations possibles
+
+- [ ] Intégrer les dividendes Capgemini
+- [ ] Ajouter le slippage d'exécution (0.1-0.3%)
+- [ ] Calculer le Sharpe Ratio et le Max Drawdown
+- [ ] Comparer avec un benchmark (CAC 40)
+- [ ] Analyser les trades gagnants vs perdants
+- [ ] Optimiser les paramètres de la stratégie
+- [ ] Tester sur d'autres périodes (walk-forward)
+- [ ] Implémenter un stop-loss et take-profit
+
+---
+
+## 📚 Contexte Capgemini
+
+### À propos de Capgemini
+
+- **Secteur** : Services informatiques et consulting
+- **Indice** : CAC 40
+- **Ticker** : CAP.PA (Euronext Paris)
+- **Capitalisation** : ~25 milliards € (variable)
+
+### Événements marquants (2020-2024)
+
+- **Mars 2020** : Chute COVID-19 (-47%)
+- **2020-2021** : Forte reprise post-COVID
+- **2022** : Volatilité liée à l'inflation
+- **2023-2024** : Consolidation secteur tech
+
+---
+
+## 🎓 Enseignements
+
+### Leçons apprises
+
+1. **Buy & Hold surperforme** : +54.9% vs -219€
+2. **Frais = Performance killer** : 185€ de frais pour 33€ de pertes
+3. **Market timing difficile** : Timing des entrées/sorties crucial
+4. **Protection COVID** : Les signaux de vente ont limité les pertes en mars 2020
+
+### Recommandations
+
+- ✅ Réduire la fréquence de trading (moins de frais)
+- ✅ Améliorer le timing des signaux
+- ✅ Tester avec stop-loss dynamique
+- ✅ Comparer avec stratégie Buy & Hold
+- ✅ Backtester sur d'autres actions
+
+---
+
+## 📊 Résumé exécutif
+
+```
+┌─────────────────────────────────────────────────┐
+│   STRATÉGIE : CAPGEMINI TRADING ALGORITHMIQUE   │
+├─────────────────────────────────────────────────┤
+│ Période         : 2020-2024 (5 ans)            │
+│ Capital initial : Non spécifié                  │
+│ Performance     : -219.48 € ❌                  │
+│ Frais totaux    : -185.97 €                     │
+│ Transactions    : 108 (53 A + 55 V)            │
+│ Taux trading    : 8.4%                          │
+│                                                 │
+│ Benchmark (B&H) : +54.9% ✅                     │
+│                                                 │
+│ VERDICT : Stratégie sous-performante           │
+│           Nécessite optimisation                │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+## 📞 Contact & Utilisation
+
+### Usage académique
+
+Ce fichier peut être utilisé pour :
+- Études de cas en finance quantitative
+- Analyse de stratégies de trading
+- Apprentissage du backtesting
+- Projets universitaires en finance
+
+### Citation
+
+```
+Analyse de stratégie de trading algorithmique sur Capgemini (2020-2024).
+Fichier : Analyse_capgemini.xlsx
+```
+
+---
+
+## 📄 Licence
+
+Ce document d'analyse est fourni à des fins éducatives et de recherche.
+
+**⚠️ Avertissement** : Ce backtest est présenté à titre d'exemple. Les performances passées ne préjugent pas des performances futures. Ne constitue pas un conseil en investissement.
+
+---
+
+📊 **Performance finale : -219.48 €** | 📈 **Buy & Hold : +54.9%** | ⏱️ **Période : 2020-2024**
 
 # 📈 Analyse des Rendements Boursiers
 
@@ -1194,8 +1694,8 @@ La base de données est maintenant prête pour :
 ## 📧 Contact
 
 **Auteur** : Saleh Ben Haliki Youssouf  
-**Email** : [votre.email@university.edu]  
-**Projet** : Mémoire de Master - Économie pétrolière
+**Email** : youssoufsalehhaliki@gmail.com
+**Projet** : Mémoire de Master 1 - Économie Appliqquée Parcours Maserati Data Science
 
 ---
 
@@ -1206,7 +1706,7 @@ Si vous utilisez cette base de données, veuillez citer :
 ```
 Saleh Ben Haliki Youssouf (2025). "Base de données trimestrielle : 
 Impact des chocs pétroliers sur le risque souverain du Nigeria (2010-2024)". 
-Mémoire de Master, [Université].
+Mémoire de Master 1, UPEC.
 ```
 
 ---
