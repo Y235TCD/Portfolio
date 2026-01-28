@@ -1,6 +1,6 @@
 # 📚 Portfolio de Projets
 
-Collection de mes projets académiques et professionnels, illustrant mes compétences en économie, finance et data;
+Collection de mes projets académiques et professionnels, illustrant mes compétences en économie, finance et data.
 
 ---
 
@@ -47,11 +47,11 @@ Collection de mes projets académiques et professionnels, illustrant mes compét
 
 ### 3. Détection Fraude CB
 **Classification ML sur données déséquilibrées**
-- Dataset Kaggle : ~550k transactions
-- Déséquilibre : 99.83% normal / 0.17% fraude
-- Modèles : Logistic Regression (✅), RF/XGBoost (🔄)
-- Métriques : AUC-ROC ~0.95+
-- **Tech** : Python, scikit-learn, imbalanced-learn
+- Dataset Kaggle : ~550k transactions (standard)
+- Déséquilibre : 50% normal / 50% fraude
+- Modèle : Logistic Regression avec validation croisée
+- Métriques : Accuracy, Precision, Recall, F1, AUC-ROC
+- **Tech** : Python, scikit-learn, pandas, matplotlib,seaborn
 
 ### 4. Mémoire Nigeria
 **Impact chocs pétroliers sur risque souverain**
