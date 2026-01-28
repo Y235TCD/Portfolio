@@ -568,18 +568,6 @@ La stratégie gagnante (RSI 30j/20%) est :
 - Peu de paramètres
 - Robuste dans le temps
 
-### 🚀 Améliorations futures
-
-- [ ] **Stop-loss dynamique** : Protéger les gains
-- [ ] **Take-profit** : Sécuriser les positions gagnantes
-- [ ] **Sizing adaptatif** : Ajuster la taille selon la volatilité
-- [ ] **Combinaison stratégies** : RSI + Filtres (double confirmation)
-- [ ] **Machine Learning** : Optimisation paramètres par apprentissage
-- [ ] **Walk-forward optimization** : Valider la robustesse
-- [ ] **Backtesting sur autres actions** : Généraliser les résultats
-- [ ] **Intégrer dividendes** : Performance totale
-- [ ] **Analyse des drawdowns** : Mesurer le risque
-
 ### 📊 Recommandation finale
 
 ```
