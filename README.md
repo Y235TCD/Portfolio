@@ -646,12 +646,11 @@ Fichier : Analyse_capgemini.xlsx
 ## 📚 Ressources
 
 ### Indicateurs techniques
-- **RSI** : Wilder, J. W. (1978). "New Concepts in Technical Trading Systems"
-- **Moyennes mobiles** : Appel, G. (1979). "MACD"
-- **Filtres de variation** : Momentum trading
+- **RSI** 
+- **Moyennes mobiles** 
+- **Filtres de variation** 
 
 ### Outils
-- **Python** : `pandas`, `ta-lib`, `yfinance`
 - **Excel** : Formules avancées, tableaux croisés dynamiques
 - **Backtesting** : Walk-forward, out-of-sample testing
 
