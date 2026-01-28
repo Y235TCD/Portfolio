@@ -1,5 +1,81 @@
-# Portfolio
-Collection de mes projets académiques et professionnels, illustrant mes compétences en économie, finance et data
+# 📚 Portfolio de Projets
+
+Collection de mes projets académiques et professionnels, illustrant mes compétences en économie, finance et data;
+
+---
+
+## 🗂️ Projets
+
+| # | Projet | Type | Période | Résultat clé | README |
+|---|--------|------|---------|--------------|--------|
+| 1 | **Rendements Boursiers** | Analyse R | 2010-2024 | S&P500, Orange, Danone, CAC40 | [📄 Voir](README.md) |
+| 2 | **Backtesting Capgemini** | Trading Excel | 2020-2024 | RSI 30j/20% → **+1,218€** 🏆 | [📄 Voir](README_Analyse_Capgemini_Complete.md) |
+| 3 | **Détection Fraude CB** | ML Python | 2023 | ~550k transactions, AUC 0.95+ | [📄 Voir](README_Credit_Card_Fraud.md) |
+| 4 | **Mémoire Nigeria** | Économétrie R | 2010-2024 | 60 trimestres, 20 variables | [📄 Voir](README_Base_de_Donnees.md) |
+
+---
+
+## 🎯 Navigation rapide
+
+### Par domaine
+- **Finance** : [#1](#1-rendements-boursiers) • [#2](#2-backtesting-capgemini)
+- **Machine Learning** : [#3](#3-détection-fraude-cb)
+- **Recherche** : [#4](#4-mémoire-nigeria)
+
+### Par technologie
+- **R** : [#1](#1-rendements-boursiers) • [#4](#4-mémoire-nigeria)
+- **Python** : [#3](#3-détection-fraude-cb)
+- **Excel** : [#2](#2-backtesting-capgemini)
+
+---
+
+## 📖 Détails des projets
+
+### 1. Rendements Boursiers
+**Analyse quantitative multi-actifs en R**
+- S&P500 : rendements log, régression t vs t-1
+- Orange, Danone, CAC40 : prix normalisés, Sharpe, skewness
+- Optimisation portefeuille binaire
+- **Tech** : R, quantmod, ggplot2, tseries
+
+### 2. Backtesting Capgemini
+**3 stratégies de trading algorithmique**
+- Filtres (6 configs) : Meilleur 7.5% → +333€
+- Moyennes Mobiles (7 configs) : Meilleur MM200-50 → +64€
+- RSI (18 configs) : **Champion RSI 30j/20% → +1,218€** 🏆
+- **Tech** : Excel, 5 feuilles, 1,286 jours
+
+### 3. Détection Fraude CB
+**Classification ML sur données déséquilibrées**
+- Dataset Kaggle : ~550k transactions
+- Déséquilibre : 99.83% normal / 0.17% fraude
+- Modèles : Logistic Regression (✅), RF/XGBoost (🔄)
+- Métriques : AUC-ROC ~0.95+
+- **Tech** : Python, scikit-learn, imbalanced-learn
+
+### 4. Mémoire Nigeria
+**Impact chocs pétroliers sur risque souverain**
+- Base trimestrielle : 60 observations (2010-2024)
+- Variables : spread_10y + 7 pétrolières + 7 macro
+- Interpolation Denton-Cholette (termes de l'échange)
+- Analyse : MCO et VAR (à venir)
+- **Tech** : R, dplyr, tempdisagg, tseries
+
+---
+
+## 📊 Statistiques
+
+```
+Projets         : 4
+Langages        : R (2), Python (1), Excel (1)
+Période         : 2010-2024
+Observations    : 552k+ transactions + 60 trimestres + 1,286 jours
+Statut          : 2 terminés | 2 en cours
+```
+
+---
+
+**Auteur** : Saleh Ben Haliki Youssouf | **Formation** : Master Maserati Data Science | **Année** : 2025-2026
 # 📊 Backtesting Multi-Stratégies - Action Capgemini (CAP.PA)
 
 Analyse comparative de **3 stratégies de trading algorithmique** sur l'action Capgemini avec optimisation des paramètres : **Filtres de variation**, **Moyennes Mobiles (MM)** et **RSI (Relative Strength Index)**.
