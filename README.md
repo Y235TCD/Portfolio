@@ -12,7 +12,7 @@ Collection de mes projets en économie, finance et data science.
 
 | # | Projet | Type | Période | Tech | README |
 |---|--------|------|---------|------|--------|
-| 1 | [**Rendements Boursiers**](#1-rendements-boursiers) | Analyse quantitative | 2010-2024 | R | [📄](./rendements-boursiers) |
+| 1 | [**Rendements Boursiers**](#1-rendements-boursiers) | Analyse quantitative | 5 ans | R | [📄](./rendements-boursiers) |
 | 2 | [**Backtesting Capgemini**](#2-backtesting-capgemini) | Trading algorithmique | 2020-2024 | Excel | [📄](./backtesting-capgemini) |
 | 3 | [**Détection Fraude CB**](#3-détection-fraude-cb) | Machine Learning | 2023 | Python | [📄](./fraud-detection) |
 | 4 | [**Mémoire Nigeria**](#4-mémoire-nigeria) | Économétrie | 2010-2024 | R | [📄](./memoire-nigeria) |
