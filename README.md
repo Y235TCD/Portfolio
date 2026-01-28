@@ -1,77 +1,241 @@
-# 📚 Portfolio d
+# 📚 Portfolio de Projets
 
-Collection de mes projets académiques et professionnels, illustrant mes compétences en économie, finance et data.
+Collection de mes projets en économie, finance et data science.
 
----
-
-## 🗂️ Projets
-
-| # | Projet | Type | Période | Résultat clé | README |
-|---|--------|------|---------|--------------|--------|
-| 1 | **Rendements Boursiers** | Analyse R | 2010-2024 | S&P500, Orange, Danone, CAC40 | [📄 Voir](README.md) |
-| 2 | **Backtesting Capgemini** | Trading Excel | 2020-2024 | RSI 30j/20% → **+1,218€** 🏆 | [📄 Voir](README_Analyse_Capgemini_Complete.md) |
-| 3 | **Détection Fraude CB** | ML Python | 2023 | ~550k transactions, AUC 0.95+ | [📄 Voir](README_Credit_Card_Fraud.md) |
-| 4 | **Mémoire Nigeria** | Économétrie R | 2010-2024 | 60 trimestres, 20 variables | [📄 Voir](README_Base_de_Donnees.md) |
+**Auteur** : Saleh Ben Haliki Youssouf  
+**Formation** : Master Maserati Data Science  
+**Période** : 2010-2024
 
 ---
 
-## 🎯 Navigation rapide
+## 🎯 Projets
 
-### Par domaine
-- **Finance** : [#1](#1-rendements-boursiers) • [#2](#2-backtesting-capgemini)
-- **Machine Learning** : [#3](#3-détection-fraude-cb)
-- **Recherche** : [#4](#4-mémoire-nigeria)
-
-### Par technologie
-- **R** : [#1](#1-rendements-boursiers) • [#4](#4-mémoire-nigeria)
-- **Python** : [#3](#3-détection-fraude-cb)
-- **Excel** : [#2](#2-backtesting-capgemini)
+| # | Projet | Type | Période | Tech | README |
+|---|--------|------|---------|------|--------|
+| 1 | [**Rendements Boursiers**](#1-rendements-boursiers) | Analyse quantitative | 2010-2024 | R | [📄](./rendements-boursiers) |
+| 2 | [**Backtesting Capgemini**](#2-backtesting-capgemini) | Trading algorithmique | 2020-2024 | Excel | [📄](./backtesting-capgemini) |
+| 3 | [**Détection Fraude CB**](#3-détection-fraude-cb) | Machine Learning | 2023 | Python | [📄](./fraud-detection) |
+| 4 | [**Mémoire Nigeria**](#4-mémoire-nigeria) | Économétrie | 2010-2024 | R | [📄](./memoire-nigeria) |
 
 ---
 
-## 📖 Détails des projets
+## 📖 Détails
 
 ### 1. Rendements Boursiers
-**Analyse quantitative multi-actifs en R**
-- S&P500 : rendements log, régression t vs t-1
-- Orange, Danone, CAC40 : prix normalisés, Sharpe, skewness
+**Analyse quantitative multi-actifs**
+
+Analyse des rendements du S&P500, Orange, Danone et CAC40 avec calculs de Sharpe ratio, optimisation de portefeuille et tests d'autocorrélation.
+
+**Technologies** : R, quantmod, ggplot2, tseries
+
+**Résultats clés** :
+- Rendements logarithmiques quotidiens
+- Régression t vs t-1
 - Optimisation portefeuille binaire
-- **Tech** : R, quantmod, ggplot2, tseries
+- Métriques : Sharpe, skewness, volatilité
+
+[📂 Voir le projet](./rendements-boursiers)
+
+---
 
 ### 2. Backtesting Capgemini
 **3 stratégies de trading algorithmique**
-- Filtres (6 configs) : Meilleur 7.5% → +333€
-- Moyennes Mobiles (7 configs) : Meilleur MM200-50 → +64€
-- RSI (18 configs) : **Champion RSI 30j/20% → +1,218€** 🏆
-- **Tech** : Excel, 5 feuilles, 1,286 jours
 
-### 3. Détection Fraude CB
-**Classification ML sur données déséquilibrées**
-- Dataset Kaggle : ~550k transactions (standard)
-- Déséquilibre : 50% normal / 50% fraude
-- Modèle : Logistic Regression avec validation croisée
-- Métriques : Accuracy, Precision, Recall, F1, AUC-ROC
-- **Tech** : Python, scikit-learn, pandas, matplotlib,seaborn
+Backtesting systématique sur l'action Capgemini (CAP.PA) avec optimisation de paramètres sur 1,286 jours de trading.
 
-### 4. Mémoire Nigeria
-**Impact chocs pétroliers sur risque souverain**
-- Base trimestrielle : 60 observations (2010-2024)
-- Variables : spread_10y + 7 pétrolières + 7 macro
-- Interpolation Denton-Cholette (termes de l'échange)
-- Analyse : MCO et VAR (à venir)
-- **Tech** : R, dplyr, tempdisagg, tseries
+**Technologies** : Excel, formules avancées
+
+**Stratégies testées** :
+- **Filtres** (6 configs) : Meilleur 7.5% → +333€
+- **Moyennes Mobiles** (7 configs) : MM200-50 → +64€
+- **RSI** (18 configs) : **RSI 30j/20% → +1,219€** 🏆
+
+**Performance du marché** : +54.9% (Buy & Hold)
+
+[📂 Voir le projet](./backtesting-capgemini)
 
 ---
 
-## 📊 Statistiques
+### 3. Détection Fraude CB
+**Classification ML sur données déséquilibrées**
+
+Détection automatique de fraudes bancaires avec optimisation des métriques pour classes déséquilibrées.
+
+**Technologies** : Python, scikit-learn, pandas, seaborn
+
+**Dataset** : 
+- ~550k transactions (Kaggle)
+- Déséquilibre : 50% normal / 50% fraude
+- Features : 31 variables (V1-V28 PCA + Amount + Time)
+
+**Résultats** :
+- Modèle : Logistic Regression
+- AUC-ROC : 0.95+
+- Métriques : Precision, Recall, F1-Score
+
+[📂 Voir le projet](./fraud-detection)
+
+---
+
+### 4. Mémoire Nigeria
+**Impact chocs pétroliers sur risque souverain**
+
+Construction d'une base trimestrielle complète pour analyser la relation entre le marché pétrolier et le risque de défaut du Nigeria.
+
+**Technologies** : R, dplyr, tempdisagg, tseries
+
+**Base de données** :
+- 60 observations (2010-2024)
+- 20 variables (1 dépendante + 19 explicatives)
+- Variables : spread_10y, prix Brent, production, PIB, dette, etc.
+
+**Méthodologie** :
+- Interpolation Denton-Cholette (termes de l'échange)
+- Agrégation trimestrielle multi-sources
+- Analyse MCO et VAR (à venir)
+
+[📂 Voir le projet](./memoire-nigeria)
+
+---
+
+## 📊 Vue d'ensemble
 
 ```
 Projets         : 4
 Langages        : R (2), Python (1), Excel (1)
-Période         : 2010-2024
-Observations    : 552k+ transactions + 60 trimestres + 1,286 jours
-Statut          : 2 terminés | 2 en cours
+Période globale : 2010-2024
+Observations    : 552k+ transactions | 60 trimestres | 1,286 jours
+Domaines        : Finance, ML, Économétrie
 ```
+
+---
+
+## 🛠️ Technologies
+
+### Langages
+- **R** : Analyse financière, économétrie
+- **Python** : Machine Learning, data science
+- **Excel** : Backtesting, analyse de données
+
+### Packages principaux
+- **R** : quantmod, ggplot2, dplyr, tempdisagg, tseries
+- **Python** : scikit-learn, pandas, matplotlib, seaborn, numpy
+- **Excel** : Formules avancées, tableaux croisés dynamiques
+
+---
+
+## 📈 Compétences démontrées
+
+**Finance quantitative** :
+- Calcul de rendements logarithmiques
+- Ratio de Sharpe, skewness
+- Backtesting de stratégies
+- Optimisation de portefeuille
+
+**Machine Learning** :
+- Classification binaire
+- Gestion du déséquilibre de classes
+- Validation croisée
+- Métriques avancées (AUC-ROC, F1)
+
+**Économétrie** :
+- Construction de bases temporelles
+- Interpolation (Denton-Cholette)
+- Agrégation multi-fréquences
+- Analyse VAR
+
+**Data Engineering** :
+- Collecte multi-sources
+- Nettoyage de données
+- Transformations complexes
+- Standardisation temporelle
+
+---
+
+## 📂 Structure du dépôt
+
+```
+portfolio/
+├── README.md                          # Ce fichier
+├── rendements-boursiers/
+│   ├── README.md
+│   ├── Finance.R
+│   └── data/
+├── backtesting-capgemini/
+│   ├── README.md
+│   ├── Analyse_capgemini.xlsx
+│   └── synthese/
+├── fraud-detection/
+│   ├── README.md
+│   ├── Projet_Kaggle_Credit_Card_Fraud.ipynb
+│   ├── requirements.txt
+│   └── data/
+└── memoire-nigeria/
+    ├── README.md
+    ├── projet.R
+    ├── base_10_24.csv
+    └── data/
+```
+
+---
+
+## 🚀 Démarrage rapide
+
+### Cloner le dépôt
+```bash
+git clone https://github.com/votre-username/portfolio.git
+cd portfolio
+```
+
+### Par projet
+
+**R (Rendements & Nigeria)** :
+```r
+setwd("rendements-boursiers")  # ou "memoire-nigeria"
+source("script.R")
+```
+
+**Python (Fraude CB)** :
+```bash
+cd fraud-detection
+pip install -r requirements.txt
+jupyter notebook Projet_Kaggle_Credit_Card_Fraud.ipynb
+```
+
+**Excel (Capgemini)** :
+```bash
+cd backtesting-capgemini
+open Analyse_capgemini.xlsx
+```
+
+---
+
+## 📧 Contact
+
+- **Email** : youssoufsalehhaliki@gmail.com
+- **GitHub** : [github.com/votre-username](https://github.com/votre-username)
+- **LinkedIn** : [Votre profil](https://linkedin.com/in/votre-profil)
+
+---
+
+## 📝 Licence
+
+Ce portfolio est destiné à des fins académiques et de démonstration de compétences.
+
+---
+
+## 🙏 Remerciements
+
+- Kaggle pour les datasets publics
+- Yahoo Finance pour les données de marché
+- Central Bank of Nigeria, FRED, IMF pour les données économiques
+- Communautés R et Python pour les packages open-source
+
+---
+
+⭐ **Si ce portfolio vous intéresse, n'hésitez pas à donner une étoile !**
+
+**Dernière mise à jour** : Janvier 2025
 
 ---
 
