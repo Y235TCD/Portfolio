@@ -1,7 +1,7 @@
 # =============================================================================
 # Analyse des rendements boursiers : S&P500 et multi-actifs (Orange, Danone, CAC40)
-# Auteur : 
-# Date : [À compléter]
+# Auteur : Saleh Ben Haliki Youssouf
+# L3 Finance
 # =============================================================================
 
 # =============================================================================
@@ -11,6 +11,8 @@ install.packages(c("quantmod", "moments"))
 library(quantmod)
 library(moments)
 library(ggplot2)
+library(zoo)
+library(xts)
 # =============================================================================
 # 1. Définition de la période d'étude
 # =============================================================================
