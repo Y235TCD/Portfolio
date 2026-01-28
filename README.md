@@ -1,4 +1,4 @@
-# Portfolio Data Science & Finance
+# Portfolio 
 
 **Saleh Ben Haliki Youssouf** | Master Maserati Data Science  
 📧 youssoufsalehhaliki@gmail.com
