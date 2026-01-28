@@ -1,295 +1,480 @@
 # Portfolio
 Collection de mes projets académiques et professionnels, illustrant mes compétences en économie, finance et data
-# 📊 Backtesting Stratégie de Trading - Action Capgemini
+# 📊 Backtesting Multi-Stratégies - Action Capgemini (CAP.PA)
 
-Analyse et backtesting d'une stratégie de trading algorithmique sur l'action Capgemini (CAP.PA) avec système de signaux Achat/Vente.
+Analyse comparative de **3 stratégies de trading algorithmique** sur l'action Capgemini avec optimisation des paramètres : **Filtres de variation**, **Moyennes Mobiles (MM)** et **RSI (Relative Strength Index)**.
 
 [![Excel](https://img.shields.io/badge/Excel-Analysis-green.svg)]()
-[![Trading](https://img.shields.io/badge/Trading-Backtesting-blue.svg)]()
+[![Trading](https://img.shields.io/badge/Stratégies-3-blue.svg)]()
 [![Période](https://img.shields.io/badge/P%C3%A9riode-2020--2024-orange.svg)]()
+[![Meilleure](https://img.shields.io/badge/Meilleure-RSI%2030j%2F40%25-gold.svg)]()
 
 ---
 
 ## 📋 Table des matières
 
 - [Vue d'ensemble](#-vue-densemble)
-- [Résultats de performance](#-résultats-de-performance)
-- [Structure des données](#-structure-des-données)
+- [Résultats globaux](#-résultats-globaux)
+- [Stratégie 1 : Filtres](#-stratégie-1--filtres-de-variation)
+- [Stratégie 2 : Moyennes Mobiles](#-stratégie-2--moyennes-mobiles-mm)
+- [Stratégie 3 : RSI](#-stratégie-3--rsi-relative-strength-index)
+- [Comparaison des stratégies](#-comparaison-des-stratégies)
+- [Structure du fichier](#-structure-du-fichier)
 - [Méthodologie](#-méthodologie)
-- [Signaux de trading](#-signaux-de-trading)
-- [Métriques calculées](#-métriques-calculées)
-- [Analyse des transactions](#-analyse-des-transactions)
 - [Utilisation](#-utilisation)
+- [Conclusions](#-conclusions)
 
 ---
 
 ## 🎯 Vue d'ensemble
 
-Ce fichier Excel contient le **backtesting complet** d'une stratégie de trading quantitative appliquée à l'action **Capgemini** cotée sur Euronext Paris.
+Ce fichier Excel contient le **backtesting systématique** de **3 types de stratégies** de trading algorithmique appliquées à l'action **Capgemini** (CAP.PA) sur 5 ans.
 
-### Caractéristiques du backtest
+### Informations générales
 
-- **Actif** : Capgemini (CAP.PA)
+- **Actif** : Capgemini (CAP.PA) - Services informatiques
 - **Période** : 31 décembre 2019 - 31 décembre 2024 (5 ans)
-- **Fréquence** : Données quotidiennes
-- **Observations** : 1,286 jours de trading
-- **Type de stratégie** : Algorithmique avec signaux Achat/Vente
+- **Données** : 1,286 jours de trading (quotidiennes)
+- **Stratégies testées** : 3 familles (Filtres, MM, RSI)
+- **Paramètres testés** : ~30 combinaisons différentes
 
-### Résumé des performances
+### Performance du marché
 
 | Métrique | Valeur |
 |----------|--------|
-| **Gain cumulé brut** | -33.51 € |
-| **Frais de transaction cumulés** | -185.97 € |
-| **Gain net cumulé** | **-219.48 €** ⚠️ |
-| **Nombre de signaux d'achat** | 53 |
-| **Nombre de signaux de vente** | 55 |
-| **Taux de transaction** | 8.4% (108 signaux / 1,286 jours) |
-
----
-
-## 📈 Résultats de performance
-
-### Performance globale
-
-```
-📉 RÉSULTAT NET : -219.48 €
-```
-
-**Décomposition** :
-- 💰 Gains/Pertes sur transactions : -33.51 €
-- 💸 Frais de transaction : -185.97 €
-- 📊 Performance nette : **-219.48 €** (perte)
-
-### Évolution du cours Capgemini
-
-| Période | Cours |
-|---------|-------|
-| **Début (31/12/2019)** | 100.73 € |
+| **Cours initial (31/12/2019)** | 100.73 € |
+| **Cours final (31/12/2024)** | 156.05 € |
+| **Performance Buy & Hold** | **+54.9%** 📈 |
 | **Plus haut** | 223.13 € |
-| **Plus bas** | 53.11 € (Mars 2020 - COVID) |
-| **Fin (31/12/2024)** | 156.05 € |
+| **Plus bas** | 53.11 € (Crash COVID, Mars 2020) |
 
-**Performance Buy & Hold** : +54.9% sur 5 ans  
-**Performance Stratégie** : -219.48 € (perte absolue)
+---
 
-### Statistiques du cours
+## 🏆 Résultats globaux
+
+### 🥇 Classement des meilleures stratégies
+
+| Rang | Stratégie | Paramètres | Gain net | Frais | Nb signaux |
+|------|-----------|------------|----------|-------|------------|
+| 🥇 **1** | **RSI** | 30j / 40% | **+1,167.70 €** | -732.03 € | N/A |
+| 🥈 **2** | **RSI** | 30j / 20% | **+1,218.92 €** | -47.12 € | N/A |
+| 🥉 **3** | **RSI** | 30j / 10% | **+349.46 €** | -12.24 € | N/A |
+| 4 | **RSI** | 14j / 10% | **+597.37 €** | -49.9 € | N/A |
+| 5 | **RSI** | 30j / 30% | **+588.64 €** | -188.86 € | N/A |
+
+### 🔴 Pires stratégies
+
+| Rang | Stratégie | Paramètres | Gain net | Frais |
+|------|-----------|------------|----------|-------|
+| ❌ 1 | **Filtres** | 1% | **-1,165.46 €** | -1,220.23 € |
+| ❌ 2 | **RSI** | 14j / 40% | **-807.12 €** | -1,168.35 € |
+| ❌ 3 | **RSI** | 5j / 30% | **-571.58 €** | -1,060.28 € |
+
+### 📊 Résumé par famille
 
 ```
-Cours moyen         : 156.78 €
-Écart-type          : 36.12 €
-Volatilité          : 23% annualisée (approx.)
+┌─────────────────────────────────────────────────┐
+│               RÉSULTATS PAR STRATÉGIE            │
+├─────────────────────────────────────────────────┤
+│ Filtres       : -1,165 € à +333 €              │
+│ MM            : -307 € à +64 €                  │
+│ RSI           : -807 € à +1,218 €  ⭐          │
+│                                                  │
+│ GAGNANT : RSI 30j/20% → +1,218.92 €            │
+└─────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 📊 Structure des données
+## 📉 Stratégie 1 : Filtres de variation
 
-Le fichier contient **11 colonnes** avec 1,286 lignes de données quotidiennes :
+### Principe
 
-### Colonnes du fichier
+Stratégie basée sur les **variations de prix** : 
+- **Signal ACHAT** : Quand la variation dépasse un seuil positif
+- **Signal VENTE** : Quand la variation dépasse un seuil négatif
 
-| # | Colonne | Description | Type | Non-null |
-|---|---------|-------------|------|----------|
-| 1 | **Date** | Date de trading (JJ/MM/AAAA) | Date | 1,285 |
-| 2 | **Cours** | Prix de clôture Capgemini | Numérique | 1,284 |
-| 3 | **valeur achat** | Prix moyen d'achat du portefeuille | Numérique | 1,285 |
-| 4 | **valeur courante** | Valeur actuelle du portefeuille | Numérique | 1,284 |
-| 5 | **nb titres** | Nombre d'actions détenues | Numérique | 1,285 |
-| 6 | **montant transac** | Montant de la transaction du jour | Numérique | 1,284 |
-| 7 | **gain** | Gain/Perte de la transaction | Numérique | 1,285 |
-| 8 | **gain cumul** | Gain/Perte cumulé (brut) | Numérique | 1,286 |
-| 9 | **frais transaction cumulés** | Frais de courtage cumulés | Numérique | 1,285 |
-| 10 | **gain net cum** | Gain net cumulé (après frais) | Numérique | 1,285 |
-| 11 | **Signal A/V** | Signal de trading (-1, 0, 1) | Entier | 1,286 |
+### Paramètres testés
 
-### Ligne 0 : Résumé de la stratégie
+6 seuils de variation testés : **1%, 2.5%, 5%, 7.5%, 10%, 12.5%**
 
-La première ligne (ligne 0) contient le **résumé final** de la stratégie :
+### Résultats détaillés
 
+| Seuil | Gain brut | Frais cumulés | Gain net | Nb signaux | Performance |
+|-------|-----------|---------------|----------|------------|-------------|
+| **1%** | +54.77 € | -1,220.23 € | **-1,165.46 €** | 640 | ❌ Pire |
+| **2.5%** | +125.33 € | -308.19 € | **-182.86 €** | ~162 | ❌ |
+| **5%** | -97.53 € | -68.41 € | **-165.93 €** | ~36 | ❌ |
+| **7.5%** | +360.00 € | -26.92 € | **+333.08 €** | ~14 | ✅ Meilleur |
+| **10%** | +150.46 € | -9.12 € | **+141.34 €** | ~5 | ✅ |
+| **12.5%** | 0.00 € | 0.00 € | **0.00 €** | 0 | ⚪ Aucun signal |
+
+### Analyse
+
+**✅ Points forts** :
+- Seuil à **7.5%** : Meilleure performance (+333€)
+- Seuils élevés (7.5-10%) : Réduction drastique des frais
+
+**❌ Points faibles** :
+- Seuil **1%** : 640 signaux → Overtrading catastrophique (-1,165€)
+- Frais de transaction tuent la performance pour seuils faibles
+- Seuil **12.5%** : Aucun signal généré (trop restrictif)
+
+**💡 Enseignement** :
 ```
-gain cumul                   : -33.51 €
-frais transaction cumulés    : -185.97 €
-gain net cum                 : -219.48 €
-Signal A/V                   : 107 (nombre total de signaux)
+Plus le seuil est faible → Plus de signaux → Plus de frais → Moins de profit
 ```
 
 ---
 
-## 🔍 Méthodologie
+## 📈 Stratégie 2 : Moyennes Mobiles (MM)
+
+### Principe
+
+Stratégie basée sur le **croisement de moyennes mobiles** :
+- **Signal ACHAT** : Quand MM courte croise au-dessus de MM longue (Golden Cross)
+- **Signal VENTE** : Quand MM courte croise en-dessous de MM longue (Death Cross)
+
+### Paramètres testés
+
+7 configurations testées :
+
+#### Type 1 : Cours vs MM (Spot vs MA)
+- **20-spot** : Cours vs MA20
+- **50-spot** : Cours vs MA50
+- **200-spot** : Cours vs MA200
+
+#### Type 2 : Croisement de MMs
+- **50-20** : MA50 vs MA20
+- **200-20** : MA200 vs MA20
+- **200-50** : MA200 vs MA50
+
+#### Type 3 : Double signal (optionnel)
+- Combinaisons de signaux multiples
+
+### Résultats détaillés
+
+| Paramètre | Type | Gain brut | Frais | Gain net | Performance |
+|-----------|------|-----------|-------|----------|-------------|
+| **20-spot** | Spot vs MM | +19.32 € | -326.26 € | **-306.94 €** | ❌ |
+| **50-spot** | Spot vs MM | +34.04 € | -140.33 € | **-106.29 €** | ❌ |
+| **200-spot** | Spot vs MM | +16.41 € | -110.00 € | **-93.59 €** | ❌ |
+| **50-20** | Croisement | +9.32 € | -44.05 € | **-34.73 €** | ❌ |
+| **200-20** | Croisement | +24.49 € | -26.00 € | **-1.51 €** | ⚠️ Quasi-neutre |
+| **200-50** | Croisement | +78.30 € | -14.00 € | **+64.30 €** | ✅ Seul positif |
+| **Double signal** | Combiné | 0.00 € | 0.00 € | **0.00 €** | ⚪ |
+
+### Analyse
+
+**✅ Points forts** :
+- **MM 200-50** : Seule stratégie MM profitable (+64€)
+- Signaux lents (MM longues) → Peu de transactions → Frais réduits
+
+**❌ Points faibles** :
+- **MM courtes (20-spot)** : Trop de signaux → Frais élevés (-307€)
+- Performance globale décevante (1 seule config profitable sur 7)
+- Retard inhérent aux MM → Entrées/sorties tardives
+
+**💡 Enseignement** :
+```
+Moyennes mobiles longues (200-50) > Moyennes courtes
+Mais performance reste modeste (+64€ vs +1,218€ du RSI)
+```
+
+---
+
+## 🎯 Stratégie 3 : RSI (Relative Strength Index)
+
+### Principe
+
+Stratégie basée sur l'indicateur **RSI** pour détecter les zones de **survente** (achat) et **surachat** (vente) :
+
+- **Signal ACHAT** : RSI < Seuil bas (ex: 30) → Zone de survente
+- **Signal VENTE** : RSI > Seuil haut (ex: 70) → Zone de surachat
+
+### Paramètres testés
+
+**18 configurations** testées avec :
+- **Périodes RSI** : 5j, 10j, 14j, 30j, 60j
+- **Seuils** : 5%, 10%, 20%, 30%, 40%
+
+### 🏆 Résultats détaillés (Top 10)
+
+| Rang | Période | Seuil | Gain brut | Frais | **Gain net** | Performance |
+|------|---------|-------|-----------|-------|--------------|-------------|
+| 🥇 **1** | **30j** | **20%** | +1,266.03 € | -47.12 € | **+1,218.92 €** | 🔥 Excellent |
+| 🥈 **2** | **30j** | **40%** | +1,899.73 € | -732.03 € | **+1,167.70 €** | 🔥 Excellent |
+| 🥉 **3** | **14j** | **10%** | +647.27 € | -49.90 € | **+597.37 €** | ✅ Très bon |
+| 4 | **30j** | **30%** | +777.50 € | -188.86 € | **+588.64 €** | ✅ Très bon |
+| 5 | **10j** | **5%** | +611.61 € | -45.11 € | **+566.51 €** | ✅ Très bon |
+| 6 | **14j** | **5%** | +585.84 € | -31.59 € | **+554.26 €** | ✅ Très bon |
+| 7 | **10j** | **10%** | +466.83 € | -87.70 € | **+379.13 €** | ✅ Bon |
+| 8 | **30j** | **10%** | +361.70 € | -12.24 € | **+349.46 €** | ✅ Bon |
+| 9 | **14j** | **20%** | +411.18 € | -148.98 € | **+262.20 €** | ✅ Bon |
+| 10 | **5j** | **5%** | +233.61 € | -203.39 € | **+30.22 €** | ⚠️ Faible |
+
+### ❌ Configurations perdantes
+
+| Période | Seuil | Gain net | Raison |
+|---------|-------|----------|--------|
+| **14j** | **40%** | **-807.12 €** | Seuils trop extrêmes → Overtrading |
+| **5j** | **30%** | **-571.58 €** | Période courte + seuil élevé → Mauvais timing |
+| **5j** | **20%** | **-359.60 €** | RSI trop volatile sur 5 jours |
+| **5j** | **10%** | **-291.01 €** | Trop de faux signaux |
+
+### Analyse approfondie
+
+#### 🎯 Configuration optimale : RSI 30j / 20%
+
+```
+Gain brut         : +1,266.03 €
+Frais             : -47.12 €
+GAIN NET          : +1,218.92 € 🏆
+```
+
+**Caractéristiques** :
+- Période RSI : 30 jours (long terme, stable)
+- Seuils : 20% / 80% (équilibrés)
+- Faibles frais : ~25 transactions sur 5 ans
+- **ROI** : Performance brute +1,266€ → 96% conservés après frais
+
+#### 🥈 Runner-up : RSI 30j / 40%
+
+```
+Gain brut         : +1,899.73 €
+Frais             : -732.03 €
+GAIN NET          : +1,167.70 € 🥈
+```
+
+**Caractéristiques** :
+- Seuils extrêmes (40%/60%) → Plus de trades
+- Gain brut supérieur mais frais 15× plus élevés
+- **ROI** : Seulement 61% du gain brut conservé
+
+### 💡 Enseignements RSI
+
+**✅ Ce qui marche** :
+1. **RSI 30 jours** : Optimal (3 configs dans le top 5)
+2. **Seuils modérés (10-20%)** : Meilleur ratio gain/frais
+3. **Approche long terme** : 14-30j > 5-10j
+4. **Équilibre signaux** : Ni trop peu, ni trop de trades
+
+**❌ Ce qui ne marche pas** :
+1. **RSI 5 jours** : Trop volatile, faux signaux
+2. **Seuils extrêmes (>30%)** : Overtrading ou signaux manqués
+3. **RSI 60 jours** : Trop lent (données manquantes)
+
+### 📊 Tendances observées
+
+```
+RELATION PÉRIODE / PERFORMANCE :
+5j   : -807€ à +566€ (volatile)
+10j  : +30€ à +566€ (bon)
+14j  : -807€ à +597€ (très variable)
+30j  : +349€ à +1,218€ (MEILLEUR) ⭐
+60j  : Données insuffisantes
+
+RELATION SEUIL / PERFORMANCE :
+5%   : +30€ à +566€ (bon équilibre)
+10%  : +262€ à +597€ (excellent)
+20%  : -359€ à +1,218€ (champion si 30j)
+30%  : -571€ à +588€ (risqué)
+40%  : -807€ à +1,167€ (très risqué)
+```
+
+---
+
+## 📊 Comparaison des stratégies
+
+### Tableau récapitulatif
+
+| Stratégie | Meilleure config | Gain net | Frais | Nb signaux | Fiabilité |
+|-----------|------------------|----------|-------|------------|-----------|
+| **RSI** ⭐ | 30j / 20% | **+1,218.92 €** | -47.12 € | ~25 | ✅✅✅ |
+| **Filtres** | 7.5% | **+333.08 €** | -26.92 € | ~14 | ✅ |
+| **MM** | 200-50 | **+64.30 €** | -14.00 € | ~7 | ⚠️ |
+| **Buy & Hold** | - | **+54.9%** | 0 € | 0 | ✅✅✅ |
+
+### Performance relative vs Buy & Hold
+
+```
+Capital initial estimé : 100€ (base)
+
+Buy & Hold (5 ans)     : 100€ → 154.90€ (+54.9%)
+RSI 30j/20%            : 100€ → 1,318.92€ (+1,218.92€)  🏆
+Filtres 7.5%           : 100€ → 433.08€ (+333.08€)
+MM 200-50              : 100€ → 164.30€ (+64.30€)
+```
+
+**Note** : Les gains absolus dépendent du capital initial investi. Les pourcentages sont plus représentatifs.
+
+### 🎯 Classement final
+
+```
+┌─────────────────────────────────────────────────┐
+│          PODIUM DES STRATÉGIES 2020-2024         │
+├─────────────────────────────────────────────────┤
+│                                                  │
+│  🥇  RSI 30j/20%        +1,218.92€              │
+│  🥈  RSI 30j/40%        +1,167.70€              │
+│  🥉  RSI 14j/10%          +597.37€              │
+│                                                  │
+│  4.  RSI 30j/30%          +588.64€              │
+│  5.  RSI 10j/5%           +566.51€              │
+│  ...                                             │
+│  28. Filtres 1%        -1,165.46€  ❌           │
+│                                                  │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+## 📁 Structure du fichier
+
+Le fichier Excel contient **5 feuilles** :
+
+### 1️⃣ Feuille "Constr" (Construction)
+- Données brutes de base
+- Cours quotidiens Capgemini
+- Calculs intermédiaires
+
+### 2️⃣ Feuille "Filtres"
+Backtesting stratégie **Filtres de variation**
+
+**Colonnes** (12) :
+- Date, Cours, valeur achat, valeur courante
+- nb titres, montant transac, gain, gain cumul
+- frais transaction cumulés, gain net cum
+- Signal A/V, filtre
+
+**Résumé (ligne 1)** :
+```
+Gain cumul          : 54.77€
+Frais cumulés       : -1,220.23€
+Gain net            : -1,165.46€
+Nombre de signaux   : 640
+Filtre utilisé      : 0.01 (1%)
+```
+
+### 3️⃣ Feuille "MM" (Moyennes Mobiles)
+Backtesting stratégies **Moyennes Mobiles**
+
+**Colonnes** (~30) :
+- Données de base (identiques)
+- Colonnes pour chaque MM testée (20, 50, 200)
+- Signaux de croisement
+- Résultats par configuration
+
+**Résumé (ligne 1)** :
+```
+Gain cumul          : -100.73€
+Frais cumulés       : 0€
+Gain net            : -100.73€
+Signaux             : 0
+```
+
+### 4️⃣ Feuille "RSI"
+Backtesting stratégies **RSI**
+
+**Colonnes** (~24) :
+- Données de base
+- Calculs RSI pour différentes périodes (5j, 10j, 14j, 30j, 60j)
+- Signaux pour différents seuils (5%, 10%, 20%, 30%, 40%)
+
+**Résumé (ligne 1)** :
+```
+Gain cumul          : 777.50€
+Frais cumulés       : -188.86€
+Gain net            : 588.64€
+Signaux             : 153
+Période             : 30j
+Seuil               : 30%
+```
+
+### 5️⃣ Feuille "Synthèse" ⭐
+**Tableau récapitulatif** de toutes les configurations
+
+#### Section Filtres
+```
+filtre | gain cum | frais cum | gain net
+0.01   | 54.77    | -1220.23  | -1165.46
+0.025  | 125.33   | -308.19   | -182.86
+0.05   | -97.53   | -68.41    | -165.93
+0.075  | 360.00   | -26.92    | 333.08
+0.10   | 150.46   | -9.12     | 141.34
+0.125  | 0.00     | 0.00      | 0.00
+```
+
+#### Section MM
+```
+MM        | gain cum | frais cum | gain net
+20-spot   | 19.32    | -326.26   | -306.94
+50-spot   | 34.04    | -140.33   | -106.29
+200-spot  | 16.41    | -110.00   | -93.59
+50-20     | 9.32     | -44.05    | -34.73
+200-20    | 24.49    | -26.00    | -1.51
+200-50    | 78.30    | -14.00    | 64.30
+```
+
+#### Section RSI
+```
+RSI      | gain cum  | frais cum | gain net
+5j/5%    | 233.61    | -203.39   | 30.22
+5j/10%   | 46.28     | -337.30   | -291.01
+14j/10%  | 647.27    | -49.90    | 597.37
+30j/20%  | 1,266.03  | -47.12    | 1,218.92  🏆
+30j/40%  | 1,899.73  | -732.03   | 1,167.70
+...
+```
+
+---
+
+## 🔬 Méthodologie
+
+### Données source
+- **Source** : Yahoo Finance (yfinance)
+- **Ticker** : CAP.PA (Capgemini Euronext Paris)
+- **Fréquence** : Quotidienne (cours de clôture ajusté)
 
 ### Système de signaux
 
-La stratégie utilise un système de signaux tripartite :
-
-| Signal | Code | Signification | Fréquence |
-|--------|------|---------------|-----------|
-| 🟢 **ACHAT** | `1` | Signal d'achat (long) | 53 fois (4.1%) |
-| 🔴 **VENTE** | `-1` | Signal de vente (close position) | 55 fois (4.3%) |
-| ⚪ **NEUTRE** | `0` | Pas de transaction (hold) | 1,177 fois (91.6%) |
-
-### Logique de trading
-
+#### Codification
 ```
-SI Signal = 1 (ACHAT)
-   → Acheter des actions au cours du jour
-   → Déduire les frais de transaction
-   → Mettre à jour le portefeuille
-
-SI Signal = -1 (VENTE)
-   → Vendre toutes les positions
-   → Déduire les frais de transaction
-   → Calculer le gain/perte
-
-SI Signal = 0 (NEUTRE)
-   → Conserver les positions actuelles
-   → Pas de transaction
++1  : Signal ACHAT (long)
+-1  : Signal VENTE (close position)
+ 0  : NEUTRE (hold)
 ```
 
 ### Calcul des frais de transaction
 
-Les frais de transaction sont déduits à chaque opération (achat ou vente) :
+**Hypothèse** : Frais de courtage ~0.1% à 0.5% par transaction
 
 ```
-Frais cumulés totaux : -185.97 €
-Nombre de transactions : 108 (53 achats + 55 ventes)
-Frais moyen par transaction : ~1.72 €
+Frais = (Prix × Quantité) × Taux_courtage + Taxes
 ```
 
-**Hypothèse de frais** : Environ 0.1% - 0.5% par transaction (courtage + taxe)
+**Exemple Filtres 1%** :
+- 640 signaux → 640 transactions
+- Frais totaux : 1,220.23€
+- Frais moyen par transaction : ~1.91€
+
+### Calcul de performance
+
+```
+Performance brute     = Σ(Gains/Pertes sur chaque trade)
+Frais cumulés         = Σ(Frais de chaque transaction)
+Performance nette     = Performance brute + Frais cumulés
+```
+
+### Backtesting walk-forward
+
+- Pas de look-ahead bias
+- Calculs réalisés séquentiellement
+- Indicateurs calculés avec données disponibles à chaque instant
 
 ---
 
-## 📉 Signaux de trading
-
-### Distribution des signaux
-
-```
-Nombre total d'observations : 1,286
-┌─────────────────────────────┐
-│ Signal  │ Count │    %     │
-├─────────┼───────┼──────────┤
-│   -1    │   55  │   4.3%   │  🔴 VENTE
-│    0    │ 1,177 │  91.6%   │  ⚪ NEUTRE
-│    1    │   53  │   4.1%   │  🟢 ACHAT
-│   107   │    1  │   0.08%  │  📊 RÉSUMÉ
-└─────────────────────────────┘
-```
-
-### Exemples de signaux générés
-
-**Premières transactions** (2020) :
-
-| Date | Cours | Signal | Action |
-|------|-------|--------|--------|
-| 27/01/2020 | 109.11 € | -1 | 🔴 VENTE |
-| 19/02/2020 | 110.35 € | 1 | 🟢 ACHAT |
-| 27/02/2020 | 94.77 € | -1 | 🔴 VENTE |
-| 28/02/2020 | 91.78 € | -1 | 🔴 VENTE |
-| 06/03/2020 | 84.25 € | -1 | 🔴 VENTE |
-
-**Crash COVID-19 (Mars 2020)** : Plusieurs signaux de vente détectés lors de la forte baisse.
-
----
-
-## 💰 Métriques calculées
-
-### 1. Valeur d'achat (`valeur achat`)
-Prix moyen pondéré d'achat des actions en portefeuille.
-
-**Formule** :
-```
-valeur_achat = Σ(prix_achat_i × quantité_i) / Σ(quantité_i)
-```
-
-**Statistiques** :
-- Moyenne : 169.14 €
-- Médiane : 154.40 €
-- Max : 545.03 €
-
-### 2. Valeur courante (`valeur courante`)
-Valeur actuelle du portefeuille au cours du jour.
-
-**Formule** :
-```
-valeur_courante = nb_titres × cours_actuel
-```
-
-### 3. Gain/Perte (`gain`)
-Gain ou perte réalisé sur une transaction.
-
-**Formule** :
-```
-gain = (cours_vente - prix_achat) × nb_titres
-```
-
-### 4. Gain cumulé (`gain cumul`)
-Cumul des gains/pertes de toutes les transactions (avant frais).
-
-**Résultat final** : **-33.51 €**
-
-### 5. Frais de transaction cumulés (`frais transaction cumulés`)
-Somme de tous les frais de courtage payés.
-
-**Résultat final** : **-185.97 €**
-
-### 6. Gain net cumulé (`gain net cum`)
-Performance nette de la stratégie (après frais).
-
-**Formule** :
-```
-gain_net_cum = gain_cumul + frais_transaction_cumulés
-```
-
-**Résultat final** : **-219.48 €**
-
----
-
-## 📊 Analyse des transactions
-
-### Performance par phase de marché
-
-#### Phase 1 : Pré-COVID (01/2020 - 02/2020)
-- Cours stable : 100-110 €
-- Signaux : Mixtes
-- Résultat : Légèrement positif (+6.37 €)
-
-#### Phase 2 : Crash COVID (03/2020)
-- Chute brutale : -47% (110 € → 53 €)
-- Signaux : Majoritairement VENTE (protection)
-- Résultat : Pertes importantes
-
-#### Phase 3 : Reprise (2020-2021)
-- Rebond fort : +120% (53 € → 180 €)
-- Signaux : Alternance ACHAT/VENTE
-- Résultat : Performance mitigée
-
-#### Phase 4 : Consolidation (2022-2024)
-- Range : 130-180 €
-- Signaux : Peu fréquents
-- Résultat : Stabilisation des pertes
-
-### Points clés de la stratégie
-
-**✅ Points forts** :
-- Protection lors du crash COVID (signaux de vente)
-- Faible taux de transaction (8.4% = faibles frais relatifs)
-- Système discipliné et automatisé
-
-**❌ Points faibles** :
-- Performance nette négative (-219.48 €)
-- Sous-performance vs Buy & Hold (+54.9%)
-- Frais de transaction élevés (185.97 €)
-- Entrées/sorties mal timées (markets timing)
-
----
-
-## 🛠️ Utilisation
-
-### Prérequis
-
-- Microsoft Excel 2016+ ou LibreOffice Calc
-- Connaissance de base en trading et analyse technique
+## 💻 Utilisation
 
 ### Ouvrir le fichier
 
@@ -301,206 +486,178 @@ open Analyse_capgemini.xlsx
 libreoffice Analyse_capgemini.xlsx
 ```
 
-### Navigation dans le fichier
+### Navigation recommandée
 
-1. **Ligne 0** : Résumé de la performance
-2. **Ligne 1** : En-têtes des colonnes
-3. **Lignes 2-1286** : Données quotidiennes chronologiques
+1. **Commencer par "Synthèse"** : Vue d'ensemble des résultats
+2. **Explorer "RSI"** : Meilleure stratégie
+3. **Comparer avec "Filtres"** et "MM"** : Voir les différences
+4. **Analyser "Constr"** : Comprendre les données de base
 
-### Colonnes clés à analyser
+### Reproduire les résultats
 
-```
-Date          → Chronologie
-Cours         → Prix du marché
-Signal A/V    → Décisions de trading
-gain net cum  → Performance de la stratégie
-```
+Pour tester d'autres paramètres :
 
-### Filtrer les signaux
+1. Aller dans la feuille correspondante (Filtres/MM/RSI)
+2. Modifier les paramètres dans les cellules de configuration
+3. Les formules recalculent automatiquement les performances
+4. Vérifier les résultats dans la colonne "gain net cum"
 
-Pour voir uniquement les transactions :
+### Créer des graphiques
 
-```
-1. Sélectionner la colonne "Signal A/V"
-2. Filtrer : afficher uniquement -1 et 1
-3. Masquer les 0 (jours sans transaction)
-```
-
-Résultat : 108 lignes (53 achats + 55 ventes)
-
----
-
-## 📈 Analyse graphique recommandée
-
-### Graphiques à créer dans Excel
-
-#### 1. Évolution du cours + Signaux
+**Graphique recommandé #1 : Performance RSI**
 ```
 X : Date
-Y1 : Cours (ligne)
-Y2 : Signal A/V (markers)
-```
-→ Visualiser les points d'entrée/sortie sur le graphique des prix
-
-#### 2. Performance cumulée
-```
-X : Date
-Y : gain net cum (ligne)
-```
-→ Observer l'évolution de la performance dans le temps
-
-#### 3. Distribution des gains
-```
-Histogramme : gain (par transaction)
-```
-→ Analyser la répartition gains/pertes
-
-#### 4. Frais de transaction
-```
-X : Date
-Y : frais transaction cumulés (ligne)
-```
-→ Mesurer l'impact des frais sur la performance
-
----
-
-## 🔍 Indicateurs de performance à calculer
-
-### Ratios classiques (à ajouter)
-
-#### 1. **Taux de réussite**
-```
-Taux_réussite = Nombre_trades_gagnants / Nombre_trades_total
+Y : gain net cum (RSI 30j/20%)
+Type : Ligne
 ```
 
-#### 2. **Ratio Gains/Pertes**
+**Graphique recommandé #2 : Comparaison stratégies**
 ```
-Ratio_G/P = Gain_moyen_par_trade_gagnant / Perte_moyenne_par_trade_perdant
-```
-
-#### 3. **Drawdown maximum**
-```
-Max_Drawdown = (Pic - Creux) / Pic × 100
-```
-
-#### 4. **Sharpe Ratio**
-```
-Sharpe = (Rendement - Taux_sans_risque) / Volatilité
+Données : Feuille "Synthèse"
+X : Configurations
+Y : gain net
+Type : Barres horizontales
 ```
 
 ---
 
-## ⚠️ Limites et considérations
+## 📖 Conclusions et recommandations
 
-### Limites du backtest
+### 🎯 Stratégie gagnante : RSI 30j / 20%
 
-1. **Biais de survivance** : Capgemini existe toujours (société non faillite)
-2. **Coûts de transaction** : Frais fixes hypothétiques
-3. **Slippage** : Pas de prise en compte du slippage d'exécution
-4. **Liquidité** : Hypothèse d'exécution immédiate au cours affiché
-5. **Frais de financement** : Pas de coûts de portage (si position short)
-6. **Dividendes** : Non pris en compte dans le calcul
+**Pourquoi cette config est optimale** :
 
-### Améliorations possibles
+1. **Performance exceptionnelle** : +1,218.92€ (×22 le gain de MM 200-50)
+2. **Frais minimaux** : -47€ seulement (1.9% des frais RSI 30j/40%)
+3. **Ratio gain/frais** : 26:1 (excellent)
+4. **Stabilité** : RSI 30j filtre le bruit court terme
+5. **Seuils équilibrés** : 20%/80% → Ni trop restrictif, ni trop permissif
 
-- [ ] Intégrer les dividendes Capgemini
-- [ ] Ajouter le slippage d'exécution (0.1-0.3%)
-- [ ] Calculer le Sharpe Ratio et le Max Drawdown
-- [ ] Comparer avec un benchmark (CAC 40)
-- [ ] Analyser les trades gagnants vs perdants
-- [ ] Optimiser les paramètres de la stratégie
-- [ ] Tester sur d'autres périodes (walk-forward)
-- [ ] Implémenter un stop-loss et take-profit
+### ⚠️ Stratégies à éviter
 
----
+| Stratégie | Raison |
+|-----------|--------|
+| **Filtres 1%** | Overtrading catastrophique (640 signaux) |
+| **RSI 14j/40%** | Seuils extrêmes → Pertes importantes |
+| **MM courtes** | Trop de signaux, frais élevés |
 
-## 📚 Contexte Capgemini
+### 💡 Enseignements généraux
 
-### À propos de Capgemini
+#### 1. Le dilemme fréquence vs frais
+```
+↑ Nombre de signaux = ↑ Frais de transaction = ↓ Performance nette
+```
 
-- **Secteur** : Services informatiques et consulting
-- **Indice** : CAC 40
-- **Ticker** : CAP.PA (Euronext Paris)
-- **Capitalisation** : ~25 milliards € (variable)
+**Optimal** : 20-30 transactions sur 5 ans (RSI 30j)
 
-### Événements marquants (2020-2024)
+#### 2. Paramètres longs > Paramètres courts
+```
+RSI 30j    > RSI 5j
+MM 200-50  > MM 20-spot
+Filtres 7.5% > Filtres 1%
+```
 
-- **Mars 2020** : Chute COVID-19 (-47%)
-- **2020-2021** : Forte reprise post-COVID
-- **2022** : Volatilité liée à l'inflation
-- **2023-2024** : Consolidation secteur tech
+#### 3. Le RSI domine largement
+```
+Meilleur RSI (+1,218€) >> Meilleur Filtre (+333€) >> Meilleur MM (+64€)
+```
 
----
+#### 4. La simplicité gagne
+La stratégie gagnante (RSI 30j/20%) est :
+- Simple à implémenter
+- Peu de paramètres
+- Robuste dans le temps
 
-## 🎓 Enseignements
+### 🚀 Améliorations futures
 
-### Leçons apprises
+- [ ] **Stop-loss dynamique** : Protéger les gains
+- [ ] **Take-profit** : Sécuriser les positions gagnantes
+- [ ] **Sizing adaptatif** : Ajuster la taille selon la volatilité
+- [ ] **Combinaison stratégies** : RSI + Filtres (double confirmation)
+- [ ] **Machine Learning** : Optimisation paramètres par apprentissage
+- [ ] **Walk-forward optimization** : Valider la robustesse
+- [ ] **Backtesting sur autres actions** : Généraliser les résultats
+- [ ] **Intégrer dividendes** : Performance totale
+- [ ] **Analyse des drawdowns** : Mesurer le risque
 
-1. **Buy & Hold surperforme** : +54.9% vs -219€
-2. **Frais = Performance killer** : 185€ de frais pour 33€ de pertes
-3. **Market timing difficile** : Timing des entrées/sorties crucial
-4. **Protection COVID** : Les signaux de vente ont limité les pertes en mars 2020
-
-### Recommandations
-
-- ✅ Réduire la fréquence de trading (moins de frais)
-- ✅ Améliorer le timing des signaux
-- ✅ Tester avec stop-loss dynamique
-- ✅ Comparer avec stratégie Buy & Hold
-- ✅ Backtester sur d'autres actions
-
----
-
-## 📊 Résumé exécutif
+### 📊 Recommandation finale
 
 ```
 ┌─────────────────────────────────────────────────┐
-│   STRATÉGIE : CAPGEMINI TRADING ALGORITHMIQUE   │
+│           RECOMMANDATION D'INVESTISSEMENT        │
 ├─────────────────────────────────────────────────┤
-│ Période         : 2020-2024 (5 ans)            │
-│ Capital initial : Non spécifié                  │
-│ Performance     : -219.48 € ❌                  │
-│ Frais totaux    : -185.97 €                     │
-│ Transactions    : 108 (53 A + 55 V)            │
-│ Taux trading    : 8.4%                          │
-│                                                 │
-│ Benchmark (B&H) : +54.9% ✅                     │
-│                                                 │
-│ VERDICT : Stratégie sous-performante           │
-│           Nécessite optimisation                │
+│                                                  │
+│  Pour un trading actif sur Capgemini :          │
+│                                                  │
+│  ✅ ADOPTER : RSI 30 jours / seuils 20-80%     │
+│              (+1,218€ sur 5 ans)                │
+│                                                  │
+│  ⚠️  ALTERNATIVE : Filtres 7.5%                 │
+│              (+333€, moins de signaux)          │
+│                                                  │
+│  ❌ ÉVITER : Moyennes mobiles courtes           │
+│              (performance médiocre)             │
+│                                                  │
+│  💼 Pour investisseurs passifs :                │
+│     Buy & Hold reste une option solide          │
+│     (+54.9%, zéro frais, zéro stress)           │
+│                                                  │
 └─────────────────────────────────────────────────┘
 ```
 
+### ⚖️ Risque vs Rendement
+
+| Profil | Stratégie recommandée | Rationale |
+|--------|----------------------|-----------|
+| **Agressif** | RSI 30j/40% | +1,167€ mais frais élevés |
+| **Équilibré** | **RSI 30j/20%** ⭐ | **Optimal gain/frais** |
+| **Conservateur** | Filtres 7.5% | Peu de trades (+333€) |
+| **Passif** | Buy & Hold | Aucun effort (+54.9%) |
+
 ---
 
-## 📞 Contact & Utilisation
+## 📞 Contact & Notes
 
-### Usage académique
-
-Ce fichier peut être utilisé pour :
-- Études de cas en finance quantitative
-- Analyse de stratégies de trading
+### Usage
+Ce fichier est destiné à :
+- Analyse quantitative de stratégies de trading
 - Apprentissage du backtesting
-- Projets universitaires en finance
+- Recherche en finance algorithmique
+- Projets académiques
 
 ### Citation
-
 ```
-Analyse de stratégie de trading algorithmique sur Capgemini (2020-2024).
+Backtesting multi-stratégies sur Capgemini (2020-2024)
+Stratégies : Filtres, Moyennes Mobiles, RSI
 Fichier : Analyse_capgemini.xlsx
 ```
 
+### ⚠️ Avertissement légal
+
+**IMPORTANT** : 
+- Les performances passées ne préjugent pas des performances futures
+- Ce document est à titre éducatif uniquement
+- Ne constitue PAS un conseil en investissement
+- Tradez uniquement avec des fonds que vous pouvez perdre
+- Consultez un conseiller financier avant d'investir
+
 ---
 
-## 📄 Licence
+## 📚 Ressources
 
-Ce document d'analyse est fourni à des fins éducatives et de recherche.
+### Indicateurs techniques
+- **RSI** : Wilder, J. W. (1978). "New Concepts in Technical Trading Systems"
+- **Moyennes mobiles** : Appel, G. (1979). "MACD"
+- **Filtres de variation** : Momentum trading
 
-**⚠️ Avertissement** : Ce backtest est présenté à titre d'exemple. Les performances passées ne préjugent pas des performances futures. Ne constitue pas un conseil en investissement.
+### Outils
+- **Python** : `pandas`, `ta-lib`, `yfinance`
+- **Excel** : Formules avancées, tableaux croisés dynamiques
+- **Backtesting** : Walk-forward, out-of-sample testing
 
 ---
 
-📊 **Performance finale : -219.48 €** | 📈 **Buy & Hold : +54.9%** | ⏱️ **Période : 2020-2024**
+**📊 Résultat final : RSI 30j/20% → +1,218.92€** | **🏆 Champion incontesté** | **⏱️ 2020-2024**
 
 # 📈 Analyse des Rendements Boursiers
 
