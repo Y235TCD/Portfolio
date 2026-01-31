@@ -32,7 +32,7 @@ Analyse multi-actifs (S&P500, Orange, Danone, CAC40) sur 5 ans
 - [💻 Script R](./Finance.R)
 
 ### 🛢️ Mémoire Master 1 - Econométrie
-Base trimestrielle 2010-2024 : Impact chocs pétroliers sur le risque de defaut souverain
+Base trimestrielle 2010-2024 : Impact chocs pétroliers sur le risque de defaut souverain du Nigeria 
 - **Données** : 60 trimestres, 20 variables (pétrole, macro, dette)
 - **Méthodes** : Interpolation Denton-Cholette, agrégation multi-sources
 - [💻 Script R](./projet.R)
