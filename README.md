@@ -19,6 +19,13 @@ Classification ML sur 550k transactions avec déséquilibre de classes 50/50
 - **Stack** : Python, scikit-learn, pandas, imbalanced-learn
 - [📓 Notebook Jupyter](./Projet%20Kaggle%20Credit%20Crad%20Fraude.ipynb) | [📄 PDF](./Projet%20Kaggle%20Credit%20Fraud.pdf)
 
+### 🏆 Détection Fraude Bancaire V2 - Comparaison de Modèles
+Classification ML sur dataset indépendant - comparaison de 3 algorithmes
+- **Modèles testés** : Logistic Regression, Random Forest, XGBoost
+- **Meilleur modèle** : XGBoost | **Accuracy** : 99.89% | **Precision** : 99.90% | **Recall** : 99.89% | **F1-Score** : 99.89%
+- **Stack** : Python, XGBoost, scikit-learn, pandas
+- [📓 Notebook Jupyter](./Projet%20kaggle%202.ipynb)
+
 ### 💹 Backtesting Capgemini - Trading Algorithmique
 Comparaison de 3 stratégies (Filtres, Moyennes Mobiles, RSI) sur 1,286 jours
 - **Meilleure stratégie** : RSI 30j/20% → **+1,218€** (+22× vs MM)
@@ -55,6 +62,7 @@ Base trimestrielle 2010-2024 : Impact chocs pétroliers sur le risque de defaut 
 
 ```
 ✓ Détection fraude : 95%+ AUC-ROC sur 550k transactions
+✓ Detection de Fraude 2: XGboost F1 score 99.89%
 ✓ Trading algo : +1,218€ stratégie RSI (vs +64€ MM)
 ✓ Base économétrique : 60 trimestres × 20 variables (6 sources)
 ✓ Analyse quantitative : Sharpe, optimisation portefeuille, tests autocorrélation
@@ -85,6 +93,7 @@ Rscript projet.R
 ## 📁 Fichiers
 
 - **Projet Kaggle Credit Crad Fraude.ipynb** - ML Détection fraude
+- **Projet kaggle 2.ipynb**- ML détection de fraude-Comparaison de modèle
 - **Analyse capgemini.xlsx** - Backtesting stratégies trading
 - **Finance.R** - Analyse rendements boursiers
 - **projet.R** - Construction base Nigeria
@@ -92,4 +101,4 @@ Rscript projet.R
 
 ---
 
-**Dernière mise à jour** : Janvier 2025
+**Dernière mise à jour** : Fevrier 2026
